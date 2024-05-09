@@ -8,11 +8,13 @@ function Square({ value, onSquareClick }) {
   );
 }
 
-function Board({ xIsNext, squares, onPlay }) {
+function Board({ xIsNext, squares, currentMove, onPlay }) {
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
     status = 'Winner : ' + winner;
+  } else if (currentMove === 9) {
+    status = 'Game over';
   } else {
     status = (xIsNext ? 'X' : 'O') + "'s Turn";
   }
@@ -87,6 +89,20 @@ export default function Game() {
   function jumpTo(nextMove) {
     setCurrentMove(nextMove);
   }
+
+  function UndoButton({ squares }) {
+    return (
+      <button
+        onClick={() => jumpTo(currentMove - 1 >= 0 ? currentMove - 1 : 0)}
+      >
+        Undo
+      </button>
+    );
+  }
+  function ResetButton({ squares }) {
+    return <button onClick={() => jumpTo(0)}>Reset</button>;
+  }
+
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
@@ -104,7 +120,16 @@ export default function Game() {
   return (
     <div className="game">
       <div className="game-board">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+        <Board
+          xIsNext={xIsNext}
+          squares={currentSquares}
+          currentMove={currentMove}
+          onPlay={handlePlay}
+        />
+      </div>
+      <div className="controls">
+        <UndoButton />
+        <ResetButton />
       </div>
       <div className="game-info">
         <ol>{moves}</ol>
