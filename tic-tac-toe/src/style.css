@@ -61,15 +61,15 @@ body {
   background: #fff;
   border: 1px solid #999;
   float: left;
-  font-size: 24px;
+  font-size: 3rem;
   font-weight: bold;
   line-height: 34px;
-  height: 34px;
+  height: 5rem;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: 5rem;
 }
 
 .board-row:after {
@@ -79,7 +79,7 @@ body {
 }
 
 .status {
-  margin-bottom: 10px;
+  margin: 10px;
 }
 .game {
   display: flex;
@@ -87,8 +87,13 @@ body {
 }
 
 .game-info {
-  margin-left: 20px;
+  margin:auto;
 }
 .controls{
- padding: 2em;
+ padding: 3em;
+}
+
+.controls button{
+  margin:0 1rem ;
+  padding: 1rem;
 }
